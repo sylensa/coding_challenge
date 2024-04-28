@@ -5,14 +5,14 @@ import 'package:coding_challenge/features/absences/model/absences_model.dart';
 import 'package:get/get.dart';
 
 class HomeViewWidget extends StatelessWidget {
-  final AbsencesModel absencesModel;
-  const HomeViewWidget({super.key, required this.absencesModel});
+  final AbsencesPayload absencesPayload;
+  const HomeViewWidget({super.key, required this.absencesPayload});
 
   @override
   Widget build(BuildContext context) {
     final state = Get.put(AbsencesController());
 
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
 
