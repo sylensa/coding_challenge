@@ -30,6 +30,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^1.0.3
+  http: ^0.13.3
+  get: ^4.6.5
+  chuck_interceptor: ^1.1.4
+  dio: ^5.0.1
+  pretty_dio_logger: ^1.1.1
 
 
   # The following adds the Cupertino Icons font to your application.
