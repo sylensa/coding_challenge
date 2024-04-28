@@ -10,32 +10,32 @@ String membersModelToJson(MembersModel data) => json.encode(data.toJson());
 
 class MembersModel {
   String? message;
-  List<Payload>? payload;
+  List<MembersPayload>? membersPayload;
 
   MembersModel({
     this.message,
-    this.payload,
+    this.membersPayload,
   });
 
   factory MembersModel.fromJson(Map<String, dynamic> json) => MembersModel(
     message: json["message"],
-    payload: json["payload"] == null ? [] : List<Payload>.from(json["payload"]!.map((x) => Payload.fromJson(x))),
+    membersPayload: json["payload"] == null ? [] : List<MembersPayload>.from(json["payload"]!.map((x) => MembersPayload.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "message": message,
-    "payload": payload == null ? [] : List<dynamic>.from(payload!.map((x) => x.toJson())),
+    "MembersPayload": membersPayload == null ? [] : List<dynamic>.from(membersPayload!.map((x) => x.toJson())),
   };
 }
 
-class Payload {
+class MembersPayload {
   int? crewId;
   int? id;
   String? image;
   String? name;
   int? userId;
 
-  Payload({
+  MembersPayload({
     this.crewId,
     this.id,
     this.image,
@@ -43,7 +43,7 @@ class Payload {
     this.userId,
   });
 
-  factory Payload.fromJson(Map<String, dynamic> json) => Payload(
+  factory MembersPayload.fromJson(Map<String, dynamic> json) => MembersPayload(
     crewId: json["crewId"],
     id: json["id"],
     image: json["image"],

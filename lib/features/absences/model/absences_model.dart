@@ -10,7 +10,7 @@ String AbsencesModelToJson(AbsencesModel data) => json.encode(data.toJson());
 
 class AbsencesModel {
   String? message;
-  List<Payload>? payload;
+  List<AbsencesPayload>? payload;
 
   AbsencesModel({
     this.message,
@@ -19,7 +19,7 @@ class AbsencesModel {
 
   factory AbsencesModel.fromJson(Map<String, dynamic> json) => AbsencesModel(
     message: json["message"],
-    payload: json["payload"] == null ? [] : List<Payload>.from(json["payload"]!.map((x) => Payload.fromJson(x))),
+    payload: json["payload"] == null ? [] : List<AbsencesPayload>.from(json["payload"]!.map((x) => AbsencesPayload.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -28,7 +28,7 @@ class AbsencesModel {
   };
 }
 
-class Payload {
+class AbsencesPayload {
   int? admitterId;
   String? admitterNote;
   DateTime? confirmedAt;
@@ -42,7 +42,7 @@ class Payload {
   Type? type;
   int? userId;
 
-  Payload({
+  AbsencesPayload({
     this.admitterId,
     this.admitterNote,
     this.confirmedAt,
@@ -57,7 +57,7 @@ class Payload {
     this.userId,
   });
 
-  factory Payload.fromJson(Map<String, dynamic> json) => Payload(
+  factory AbsencesPayload.fromJson(Map<String, dynamic> json) => AbsencesPayload(
     admitterId: json["admitterId"],
     admitterNote: json["admitterNote"],
     confirmedAt: json["confirmedAt"] == null ? null : DateTime.parse(json["confirmedAt"]),
