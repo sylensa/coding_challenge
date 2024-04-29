@@ -52,6 +52,12 @@ Widget sText(String? word,
 String dateFormat(DateTime timestamp) {
   return DateFormat.yMMMMEEEEd().format(timestamp);
 }
+
+convertToDateTime(String dateString){
+  DateFormat inputDateFormat = DateFormat("EEEE, MMMM d, yyyy",);
+  DateTime dateTime = inputDateFormat.parse(dateString);
+  return dateTime;
+}
 LinearGradient linearGradient =  const LinearGradient(
   begin: Alignment.topCenter,
   end:  Alignment.bottomCenter,
