@@ -56,11 +56,17 @@ class HomeViewWidget extends StatelessWidget {
               ],
             ),
           const SizedBox(height: 5,),
-          sText("Status: ",),
-          const SizedBox(height: 5,),
-          sText("Member Note: ${absencesPayload.memberNote}",),
-          const SizedBox(height: 5,),
-          sText("Admitter Note: ${absencesPayload.admitterNote}",),
+          sText("Status: ${state.absencesStatus(absencesPayload)}",),
+          if(absencesPayload.memberNote.isNullOrBlank == false)
+          Padding(
+            padding: const EdgeInsets.only(top: 5),
+            child: sText("Member Note: ${absencesPayload.memberNote}",),
+          ),
+          if(absencesPayload.admitterNote.isNullOrBlank == false)
+          Padding(
+            padding: const EdgeInsets.only(top: 5),
+            child: sText("Admitter Note: ${absencesPayload.admitterNote}",),
+          ),
         ],
       ),
     );
