@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 Widget progressCircular({double size = 20,double radius = 10,Color color = Colors.black}) {
@@ -45,4 +46,8 @@ Widget sText(String? word,
       fontWeight: weight,
     ),
   );
+}
+
+String dateFormat(DateTime timestamp) {
+  return DateFormat.yMMMMEEEEd().format(timestamp);
 }
