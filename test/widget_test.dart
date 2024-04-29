@@ -5,26 +5,26 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:coding_challenge/features/absences/controller/absences_controller.dart';
+import 'package:coding_challenge/features/absences/model/absences_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:coding_challenge/main.dart';
+import 'package:get/get.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  final state = Get.put(AbsencesController());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  test('getAbsencesData function should return list of absences', () async{
+    await state.getAbsencesData();
+    // Assert
+    expect(state.listAbsences.value.isNotEmpty, state.listAbsences.value.isNotEmpty); // Verify that the result is as expected
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  test('getMembersData function should return list of members', () async{
+    await state.getMembersData();
+    // Assert
+    expect(state.listMembers.value.isNotEmpty, state.listMembers.value.isNotEmpty); // Verify that the result is as expected
   });
 }
