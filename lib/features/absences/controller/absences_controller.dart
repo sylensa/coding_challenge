@@ -19,6 +19,8 @@ class AbsencesController extends GetxController{
   final Rx<List<AbsencesPayload>> unFilteredListAbsences = Rx<List<AbsencesPayload>>([]);
   final Rx<List<MembersPayload>> listMembers = Rx<List<MembersPayload>>([]);
   final Rx<String> errorMessage = Rx<String>("");
+  final Rx<bool> loading = Rx<bool>(true);
+  final Rx<bool> paginationLoading = Rx<bool>(false);
 
   @override
   onReady() {
@@ -39,6 +41,8 @@ class AbsencesController extends GetxController{
      if(absencesModel.message?.toUpperCase() == AppResponseCodes.success){
        listAbsences.value.addAll(absencesModel.payload!);
        unFilteredListAbsences.value.addAll(absencesModel.payload!);
+     }else{
+       errorMessage.value = absencesModel.message!;
      }
    }catch(e){
      errorMessage.value = absencesModel!.message!;
@@ -53,6 +57,8 @@ class AbsencesController extends GetxController{
      membersModel = MembersModel.fromJson(response);
      if(membersModel.message?.toUpperCase() == AppResponseCodes.success){
        listMembers.value.addAll(membersModel.membersPayload!);
+     }else{
+       errorMessage.value = membersModel.message!;
      }
    }catch(e){
      errorMessage.value = membersModel!.message!;
@@ -61,12 +67,17 @@ class AbsencesController extends GetxController{
   }
 
   void onRefresh()async{
+    paginationLoading.value = true;
+    paginationLoading.refresh();
     listAbsences.value.clear();
+    unFilteredListAbsences.value.clear();
     await getAbsencesData(limit: 10,offset: 0);
-    listAbsences.refresh();
+    refreshData();
     refreshController.loadComplete();
   }
   void onLoading()async{
+    paginationLoading.value = true;
+    paginationLoading.refresh();
     await getAbsencesData(limit: 10,offset:  listAbsences.value.length);
     refreshData();
     refreshController.refreshCompleted();
@@ -87,6 +98,18 @@ class AbsencesController extends GetxController{
     });
     refreshData();
   }
+  filterAbsences(String type,String date){
+      if(type.isNotEmpty  || date.isNotEmpty){
+        listAbsences.value.clear();
+        listAbsences.value = unFilteredListAbsences.value.where((element) => element.type!.toLowerCase().contains(type.toLowerCase()) || element.startDate!.toLowerCase().contains(date.toLowerCase())
+            || element.endDate!.toLowerCase().contains(date.toLowerCase())
+        ).toList();
+      }else{
+        listAbsences.value.addAll(unFilteredListAbsences.value);
+      }
+
+    refreshData();
+  }
 
  String? getMembersName(int userId){
   try{
@@ -100,6 +123,21 @@ class AbsencesController extends GetxController{
     listAbsences.refresh();
     errorMessage.refresh();
     unFilteredListAbsences.refresh();
+    loading.value = false;
+    loading.refresh();
+    paginationLoading.value = false;
+    paginationLoading.refresh();
+  }
+
+  absencesStatus(AbsencesPayload absencesPayload){
+    if(absencesPayload.confirmedAt!.isNotEmpty){
+      return "Confirmed";
+    }else if(absencesPayload.rejectedAt!.isNotEmpty){
+      return "Rejected";
+    }else {
+      return "Requested";
+    }
+
   }
 }
 
