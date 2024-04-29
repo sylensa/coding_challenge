@@ -1,3 +1,4 @@
+import 'package:coding_challenge/core/utils/colors_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -50,4 +51,29 @@ Widget sText(String? word,
 
 String dateFormat(DateTime timestamp) {
   return DateFormat.yMMMMEEEEd().format(timestamp);
+}
+LinearGradient linearGradient =  const LinearGradient(
+  begin: Alignment.topCenter,
+  end:  Alignment.bottomCenter,
+  colors: [
+    Color(0XFFBB0027),
+    Color(0XFFFD4041),
+  ],
+  stops: [0.5, 0.7458],
+);
+
+buttonStyle({Color textColor = Colors.white,Color buttonColor = appMainColor,FontWeight fontWeight = FontWeight.bold}) {
+  return ElevatedButton.styleFrom(
+    elevation: 0,
+    backgroundColor: buttonColor,
+
+    padding: const EdgeInsets.all(
+      15,
+    ),
+    textStyle:  TextStyle(
+      color: textColor,
+      fontWeight:fontWeight ,
+      fontSize: 18,
+    ),
+  );
 }
