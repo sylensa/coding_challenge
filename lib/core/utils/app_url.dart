@@ -1,9 +1,9 @@
 class AppUrl {
-  static const String qaBaseURL = "";
+  static const String qaBaseURL = "https://excelliumgh.com/cdn/syl/";
 
 
-  static String absences = "${qaBaseURL}absences";
-  static String members = "${qaBaseURL}members";
+  static String absences = "$qaBaseURL?mode=absences";
+  static String members = "$qaBaseURL?mode=members";
 
 }
 
