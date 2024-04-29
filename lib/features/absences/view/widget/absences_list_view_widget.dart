@@ -1,4 +1,5 @@
 import 'package:coding_challenge/core/helper/helper.dart';
+import 'package:coding_challenge/features/absences/controller/ican_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -67,6 +68,20 @@ class HomeViewWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 5),
             child: sText("Admitter Note: ${absencesPayload.admitterNote}",),
           ),
+          const SizedBox(height: 10,),
+          InkWell(
+            onTap: (){
+              IcaController().launchOutlookEventButtonPressed(convertToDateTime(absencesPayload.startDate!),convertToDateTime(absencesPayload.endDate!));
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+              decoration: BoxDecoration(
+                gradient: linearGradient,
+                borderRadius: BorderRadius.circular(10)
+              ),
+              child: sText("ADD TO CALENDAR",color: Colors.white,size: 16,weight: FontWeight.w700),
+            ),
+          )
         ],
       ),
     );
