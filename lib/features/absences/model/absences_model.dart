@@ -12,20 +12,28 @@ String AbsencesModelToJson(AbsencesModel data) => json.encode(data.toJson());
 
 class AbsencesModel {
   String? message;
+  int? total;
+  int? size;
   List<AbsencesPayload>? payload;
 
   AbsencesModel({
     this.message,
     this.payload,
+    this.total,
+    this.size,
   });
 
   factory AbsencesModel.fromJson(Map<String, dynamic> json) => AbsencesModel(
     message: json["message"],
+    size: json["size"],
+    total: json["total"],
     payload: json["payload"] == null ? [] : List<AbsencesPayload>.from(json["payload"]!.map((x) => AbsencesPayload.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "message": message,
+    "total": total,
+    "size": size,
     "payload": payload == null ? [] : List<dynamic>.from(payload!.map((x) => x.toJson())),
   };
 }
