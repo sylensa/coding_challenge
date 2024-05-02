@@ -48,14 +48,12 @@ void main() {
   });
   test('Member name', () async{
     String? memberName = state.getMembersName(644);
-    print("memberName:$memberName");
     // Assert
     expect( memberName , "Max" ); // Verify that the result is as expected
   });
 
   test('No Member name', () async{
     String? memberName = state.getMembersName(123456);
-    print("memberName:$memberName");
     // Assert
     expect( memberName , null ); // Verify that the result is as expected
   });

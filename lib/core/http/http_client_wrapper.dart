@@ -31,7 +31,7 @@ class HttpClientWrapper {
   // api url preparing
   static String apiUrl(String path, Map<String, dynamic>? queryParams) {
     var uriString = path;
-  // print("uriString:$uriString");
+  // log("uriString:$uriString");
     return Uri.parse(uriString)
         .replace(queryParameters: queryParams)
         .toString();
@@ -105,10 +105,10 @@ class HttpClientWrapper {
           break;
       // executing POST request
         case HttpRequestType.POST:
-          // print("path:$path");
-          // print("queryParams:$queryParams");
-          // print("body:$body");
-          // print("body:$headers");
+          // log("path:$path");
+          // log("queryParams:$queryParams");
+          // log("body:$body");
+          // log("body:$headers");
           dioResponse = await dio.post(
             apiUrl(path, queryParams),
             data: body,
@@ -143,18 +143,18 @@ class HttpClientWrapper {
       response.success = true;
       response.body = dioResponse.data;
       response.status = dioResponse.statusCode;
-      // print("response.body:${response.body}");
-      // print("dioResponse.statusCode:${dioResponse.statusCode}");
-      // print("dioResponse.headers:${dioResponse.headers}");
-      // print("pathpath:${path}");
+      // log("response.body:${response.body}");
+      // log("dioResponse.statusCode:${dioResponse.statusCode}");
+      // log("dioResponse.headers:${dioResponse.headers}");
+      // log("pathpath:${path}");
 
       return response.body;
     } catch (e) {
       if (e is DioError) {
-        print('Dio error: ${e.message}');
+        log('Dio error: ${e.message}');
         if (e.response != null) {
           // If the response is available, you can access the data
-          print('Dio error response: ${e.response?.data}');
+          log('Dio error response: ${e.response?.data}');
           response.body = e.response?.data;
           // Pass the response data to the user or handle it as needed
         }

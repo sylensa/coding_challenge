@@ -33,7 +33,7 @@ absencesPlaceFilter(BuildContext context){
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   sText("Select Absences Type",size: 18, weight: FontWeight.w700),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   MaterialButton(
                     elevation: 0,
                     padding: EdgeInsets.zero,
@@ -51,7 +51,7 @@ absencesPlaceFilter(BuildContext context){
                               decoration:  BoxDecoration(
                                   color: Colors.white,
                                   shape: BoxShape.circle,
-                                  border: Border.all(color: Color(0XFFD8DADC))
+                                  border: Border.all(color: const Color(0XFFD8DADC))
                               ),
                               child:  Container(
                                 padding: const EdgeInsets.all(7),
@@ -85,7 +85,7 @@ absencesPlaceFilter(BuildContext context){
                               decoration:  BoxDecoration(
                                   color: Colors.white,
                                   shape: BoxShape.circle,
-                                  border: Border.all(color: Color(0XFFD8DADC))
+                                  border: Border.all(color: const Color(0XFFD8DADC))
                               ),
                               child:  Container(
                                 padding: const EdgeInsets.all(7),
@@ -102,7 +102,7 @@ absencesPlaceFilter(BuildContext context){
                       ),
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
 
                   InkWell(
                     onTap: () async {
@@ -129,7 +129,7 @@ absencesPlaceFilter(BuildContext context){
 
                     },
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
                       decoration: BoxDecoration(
                         gradient: linearGradient,
                         borderRadius: BorderRadius.circular(10)
@@ -137,7 +137,7 @@ absencesPlaceFilter(BuildContext context){
                       child: Center(child: sText(selectedDate == null ? "Select date" : dateFormat(selectedDate!),color: Colors.white)),
                     ),
                   ),
-                    Spacer(),
+                    const Spacer(),
 
                   ElevatedButton(
                     onPressed: () {

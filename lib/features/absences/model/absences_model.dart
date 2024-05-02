@@ -6,9 +6,9 @@ import 'dart:convert';
 
 import 'package:coding_challenge/core/helper/helper.dart';
 
-AbsencesModel AbsencesModelFromJson(String str) => AbsencesModel.fromJson(json.decode(str));
+AbsencesModel absencesModelFromJson(String str) => AbsencesModel.fromJson(json.decode(str));
 
-String AbsencesModelToJson(AbsencesModel data) => json.encode(data.toJson());
+String absencesModelToJson(AbsencesModel data) => json.encode(data.toJson());
 
 class AbsencesModel {
   String? message;
