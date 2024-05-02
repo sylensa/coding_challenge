@@ -64,6 +64,17 @@ convertToDateTime(String dateString){
   return dateTime;
 }
 
+// calculate date difference
+int calculateDateDifference(DateTime startDate, DateTime endDate) {
+  // Calculate the duration between end date and start date
+  Duration difference = endDate.difference(startDate);
+
+  // Get the difference in days (absolute value)
+  int differenceInDays = difference.inDays.abs();
+
+  return differenceInDays;
+}
+
 // custom gradient function
 LinearGradient linearGradient =  const LinearGradient(
   begin: Alignment.topCenter,

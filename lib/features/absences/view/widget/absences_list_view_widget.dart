@@ -44,7 +44,7 @@ class HomeViewWidget extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    sText("Period",color: appMainColor),
+                    sText("Period:${calculateDateDifference(convertToDateTime(absencesPayload.startDate!),convertToDateTime(absencesPayload.endDate!))} day(s)",color: appMainColor),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
