@@ -1,3 +1,4 @@
+// api response codes
 class AppResponseCodes {
   static const String success = 'SUCCESS';
   static const String failed = 'FAILED';

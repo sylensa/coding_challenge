@@ -1,3 +1,4 @@
+// http response class
 class GenericHttpResponse {
   bool success;
   int? status;

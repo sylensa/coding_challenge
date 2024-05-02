@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
+// custom text filed widget
 class CustomTextField extends StatefulWidget {
   final String placeholder;
    bool? obscureText;

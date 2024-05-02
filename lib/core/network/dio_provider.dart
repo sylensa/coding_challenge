@@ -6,7 +6,7 @@ import 'package:coding_challenge/core/network/chunk.dart';
 import 'package:coding_challenge/core/network/request_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-
+// dio settings and configuration with interceptors
 final Dio dio = Dio(BaseOptions(
   connectTimeout: const Duration(minutes: 2),
   receiveTimeout: const Duration(minutes: 2),

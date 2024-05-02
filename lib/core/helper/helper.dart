@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 final rootNavigatorKey = GlobalKey<NavigatorState>();
+// progress indicator
 Widget progressCircular({double size = 20,double radius = 10,Color color = Colors.black}) {
   return SizedBox(
       width: size,
@@ -15,6 +16,7 @@ Widget progressCircular({double size = 20,double radius = 10,Color color = Color
       ));
 }
 
+// custom Text widget
 Widget sText(String? word,
     {double size = 14,
       FontWeight weight = FontWeight.w500,
@@ -49,15 +51,20 @@ Widget sText(String? word,
   );
 }
 
+// date format function
 String dateFormat(DateTime timestamp) {
   return DateFormat.yMMMMEEEEd().format(timestamp);
 }
 
+
+// convert formatted date to DateTime
 convertToDateTime(String dateString){
   DateFormat inputDateFormat = DateFormat("EEEE, MMMM d, yyyy",);
   DateTime dateTime = inputDateFormat.parse(dateString);
   return dateTime;
 }
+
+// custom gradient function
 LinearGradient linearGradient =  const LinearGradient(
   begin: Alignment.topCenter,
   end:  Alignment.bottomCenter,
@@ -68,6 +75,7 @@ LinearGradient linearGradient =  const LinearGradient(
   stops: [0.5, 0.7458],
 );
 
+// button style funcction
 buttonStyle({Color textColor = Colors.white,Color buttonColor = appMainColor,FontWeight fontWeight = FontWeight.bold}) {
   return ElevatedButton.styleFrom(
     elevation: 0,

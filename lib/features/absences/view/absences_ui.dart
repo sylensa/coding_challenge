@@ -1,4 +1,5 @@
 import 'package:coding_challenge/core/helper/helper.dart';
+import 'package:coding_challenge/core/network/chunk.dart';
 import 'package:coding_challenge/core/widget/custom_text_field.dart';
 import 'package:coding_challenge/features/absences/view/widget/absences_list_view_widget.dart';
 import 'package:coding_challenge/features/absences/view/widget/filter_bottom_sheet.dart';
@@ -9,7 +10,6 @@ import 'package:coding_challenge/features/absences/controller/absences_controlle
 import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class AbsencesPage extends StatelessWidget {
    AbsencesPage({super.key});
@@ -20,10 +20,13 @@ class AbsencesPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Absences"),
-        actions: const [
+        title: GestureDetector(
+          onLongPress: () {
+            chuck.showInspector();
+          },
+          child: const Text("Absences"),
+        ),
 
-        ],
       ),
       body: Column(
         children: [
@@ -38,8 +41,8 @@ class AbsencesPage extends StatelessWidget {
                   ),
                 ),
                 IconButton(onPressed: (){
-                  marketPlaceFilter(context);
-                }, icon: Icon(Icons.filter_list_outlined))
+                  absencesPlaceFilter(context);
+                }, icon: const Icon(Icons.filter_list_outlined))
               ],
             ),
           ),

@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 String? absencesType;
 DateTime? selectedDate;
-marketPlaceFilter(BuildContext context){
+
+// custom bottom sheet for filtering
+absencesPlaceFilter(BuildContext context){
 
   final state = Get.put(AbsencesController());
   showModalBottomSheet(

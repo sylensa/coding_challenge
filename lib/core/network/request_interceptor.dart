@@ -1,9 +1,4 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
-
-
 
  Map<String, String> requestHeaders = {
   'Content-Type': 'application/json',
@@ -11,6 +6,7 @@ import 'package:dio/dio.dart';
   'x-client' : 'mobile'
 };
 
+ // request interceptor
 class HeadersInterceptor extends Interceptor {
   HeadersInterceptor(this._headers);
 
@@ -33,7 +29,7 @@ class HeadersInterceptor extends Interceptor {
     return handler.next(err);
   }
 
-
+  // triggering retry when api fails
   Future<Response<dynamic>> _retry(RequestOptions requestOptions) async {
     print("requestOptions.headers:${requestOptions.headers}");
       final options = Options(

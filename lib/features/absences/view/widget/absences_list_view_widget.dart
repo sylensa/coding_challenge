@@ -1,4 +1,5 @@
 import 'package:coding_challenge/core/helper/helper.dart';
+import 'package:coding_challenge/core/utils/colors_utils.dart';
 import 'package:coding_challenge/features/absences/controller/ican_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class HomeViewWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                sText("Member Nam: ${state.getMembersName(absencesPayload.userId!)}",),
+                Expanded(child: sText("Member Nam: ${state.getMembersName(absencesPayload.userId!)}",)),
                 sText("Absence Type: ${absencesPayload.type}",),
 
               ],
@@ -43,7 +44,7 @@ class HomeViewWidget extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    sText("Period",),
+                    sText("Period",color: appMainColor),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

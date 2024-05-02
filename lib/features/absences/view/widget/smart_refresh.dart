@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+// custom smart refresh for UI pagination
 class SmartRefresh extends StatefulWidget {
   final Widget child;
   final Function onLoading;
@@ -18,6 +19,7 @@ class SmartRefresh extends StatefulWidget {
 class _SmartRefreshState extends State<SmartRefresh> {
   final RefreshController _refreshController =  RefreshController(initialRefresh: false);
 
+  // pull to refresh the UI data
   void _onRefresh() async{
     setState(() {
       widget.onRefresh();
@@ -25,6 +27,7 @@ class _SmartRefreshState extends State<SmartRefresh> {
     _refreshController.refreshCompleted();
   }
 
+  // scroll to paginate the data on the UI
   void _onLoading() async{
     setState(() {
       widget.onLoading();

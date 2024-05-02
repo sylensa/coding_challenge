@@ -27,9 +27,8 @@ class HttpClientWrapper {
     receiveTimeout: const Duration(minutes: 2),
   )); //Client
 
-  static const String _baseUrl = 'https://api.spacexdata.com/v3';
-  static const kLoginUrls = ['spacexdata', 'login'];
 
+  // api url preparing
   static String apiUrl(String path, Map<String, dynamic>? queryParams) {
     var uriString = path;
   // print("uriString:$uriString");
@@ -83,7 +82,7 @@ class HttpClientWrapper {
   }
 
 
-
+// executing http request
   Future<dynamic> _executeHttpRequest(
     HttpRequestType httpRequestType,
     String path,
@@ -97,12 +96,14 @@ class HttpClientWrapper {
 
     try {
       switch (httpRequestType) {
+      // executing GET request
         case HttpRequestType.GET:
           dioResponse = await dio.get(
             apiUrl(path, queryParams),
             // options: buildCacheOptions(Duration(days: cacheDuration)),
           );
           break;
+      // executing POST request
         case HttpRequestType.POST:
           // print("path:$path");
           // print("queryParams:$queryParams");
@@ -114,6 +115,7 @@ class HttpClientWrapper {
             // options: buildCacheOptions(Duration(days: cacheDuration)),
           );
           break;
+      // executing PUT request
         case HttpRequestType.PUT:
           dioResponse = await dio.put(
             apiUrl(path, queryParams),
@@ -121,9 +123,11 @@ class HttpClientWrapper {
             // options: buildCacheOptions(Duration(days: cacheDuration)),
           );
           break;
+      // executing DELETE request
         case HttpRequestType.DELETE:
           dioResponse = await dio.delete(apiUrl(path, queryParams),data: body);
           break;
+      // executing DOWNLOAD request
         case HttpRequestType.DOWNLOAD:
           dioResponse = await dio.get<ResponseBody>(apiUrl(path, queryParams),
               options: Options(responseType: ResponseType.stream));
@@ -164,42 +168,36 @@ class HttpClientWrapper {
     }
   }
 
+  //  GET request function
   Future<dynamic> getRequest(String path,
       {Map<String, dynamic>? queryParams}) async {
     return await _executeHttpRequest(HttpRequestType.GET, path, queryParams);
   }
 
+  //  POST request function
   Future<dynamic> postRequest(String path,dynamic body) async {
     var quarams;
     return await _executeHttpRequest(HttpRequestType.POST, path,quarams,body: body);
   }
 
+  //  PUT request function
   Future<dynamic> putRequest(String path, dynamic body) async {
     var queryParams;
     return await _executeHttpRequest(HttpRequestType.PUT, path, queryParams,
         body: body);
   }
 
+  //  DELETE request function
   Future<dynamic> deleteRequest(String path,
       {Map<String, dynamic>? queryParams, dynamic body}) async {
     return await _executeHttpRequest(HttpRequestType.DELETE, path, queryParams,body: body);
   }
 
+  //  DOWNLOAD request function
   Future<Response> downloadRequest(String path,
       {Map<String, dynamic>? queryParams}) async {
     return dio.get<Uint8List>(apiUrl(path, queryParams),
         options: Options(responseType: ResponseType.bytes));
   }
 
-  static Future<Map?> getCountryDetails() async {
-    try {
-      debugPrint("ip api data: ");
-      var details = await dio.get("http://ip-api.com/json");
-      debugPrint("ip api data: ${details.data}");
-      return details.data;
-    } catch (e) {
-      debugPrint(e.toString());
-      return null;
-    }
-  }
 }
